@@ -1,70 +1,12 @@
-# Getting Started with Create React App
+# 리액트 개념
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+#### 1. react에 대해 서술
 
-## Available Scripts
+`react`란 페이스북이 만든 컴포넌트 기반의 javascript 라이브러리 입니다.  
+실제 데이터가 변경되었을때, 리액트는 DOM에 직접 접근하지 않고 DOM의 복사본인 `가상돔`을 생성하여 새로 생성된 가상돔과 그 이전의 가상돔을 비교하여 다른 부분(변경된 부분)만을 변경합니다. 그래서 리액트는 메모리 누수를 감소시키고, 사용자들에게 좀더 부드러운 브라우저 화면을 제공할 수 있습니다.
+리액트 컴포넌트에는 생명주기가 존재하는데, 이 생명주기는 크게 마운트, 업데이트, 언마운트 세가지로 구분합니다.  
+`마운트`는 리액트 컴포넌트가 처음 실행될 때 발생합니다. `업데이트`는 1. state가 업데이트 되었을때, 2. 부모 컴포넌트가 렌더링 되었을 때, 3. props가 업데이트 되었을 때 실행됩니다. `언마운트`는 컴포넌트를 사용하지 않을 때 발생합니다.
 
-In the project directory, you can run:
+#### 2. 상태관리의 개념에 대해서 설명
 
-### `yarn start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `yarn test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `yarn build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+리액트는 단방향 데이터 바인딩을 사용합니다. 양방향 데이터 바인딩이 일으키는 예상치못하는 에러들 때문에 대책안으로 단방향 데이터 바인딩인 flux 패턴을 도입한 것입니다. 리액트의 단방향 데이터 바인딩은 부모 컴포넌트로부터 자식 컴포넌트에게 각각 보내주는 형식입니다. 그렇기 때문에 데이터(상태) 관리가 까다롭고 유지보수에 어려움이 발생합니다. 특히 공통적으로 사용되는 상태가 있을시, 그 데이터들이 따로따로 흩어져있다면 매번 부모컴포넌트로 부터 자식 컴포넌트에게 각각 보내주어야 하는데 이걸 매번 수동으로 보내주면 시간도 오래걸리고 코드의 가독성도 떨어지게 됩니다. (ex. a-z로 상태 데이터를 전달해주려면 b-c-d-e...y를 거친다) 그래서 상태값들을 중앙에서 관리하게끔 하도록 하기 위해 탄생한 것이 `중앙데이터 저장소 (mobx, redux, context API 등)` 입니다.
